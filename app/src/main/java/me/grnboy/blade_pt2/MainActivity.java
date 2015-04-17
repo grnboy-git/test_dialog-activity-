@@ -1,12 +1,17 @@
 package me.grnboy.blade_pt2;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -28,6 +33,21 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+
+        WebView bannerWebView = new WebView(this);
+        bannerWebView.setVerticalScrollbarOverlay(true);
+        bannerWebView.setBackgroundColor(Color.BLUE);
+        bannerWebView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+//        bannerWebView.setWebViewClient(new ImageWebViewClient());
+        WebSettings ws = bannerWebView.getSettings();
+        ws.setBuiltInZoomControls(true);
+        ws.setSupportZoom(true);
+        ws.setJavaScriptEnabled(true);
+//        bannerWebView.addJavascriptInterface(new forJs(), "android");
+        bannerWebView.loadUrl("http://i.microad.net/images/9384/1859018_1.png");
+        LinearLayout ll = new LinearLayout(this);
+        ll.addView(bannerWebView);
+        setContentView(ll);
     }
 
 
